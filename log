@@ -550,3 +550,9 @@ test.c:81:1: error: control reaches end of non-void function [-Werror=return-typ
 cc1.exe: all warnings being treated as errors
 Compilation failed
 4f07383
+vi., 28 de mar. de 2025 23:16:09: 
+ list.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+ tests:  12|0
+total_score: 70/70
+589d6a3

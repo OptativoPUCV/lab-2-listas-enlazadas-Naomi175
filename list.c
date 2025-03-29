@@ -11,7 +11,7 @@ struct Node {
     Node * prev; // Puntero al nodo previo
 };
 
-struct List {
+typedef struct List {
     Node * head; // Puntero al primer elemento
     Node * tail; // Puntero al ultimo elemento
     Node * current; // Puntero para poder recorrer la lista
@@ -68,7 +68,7 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
-    nuevoNodo = createNode(data);
+    Node * nuevoNodo = createNode(data);
     if (list->head == NULL) {
         list->head = nuevoNodo;
         list->tail = nuevoNodo;
@@ -90,7 +90,7 @@ void pushCurrent(List * list, void * data) {
     if (list == NULL || list->current == NULL)
         return;
     
-    nuevoNodo = createNode(data);
+    Node * nuevoNodo = createNode(data);
 
     nuevoNodo->next = list->current->next;
     if (list->current->next != NULL)
@@ -117,8 +117,8 @@ void * popCurrent(List * list) {
     if (list == NULL || list->current == NULL)
         return NULL;
     
-    tempo = list->current;
-    data = temp.data;
+    Node * tempo = list->current;
+    void * data = tempo->data;
 
     if (tempo->prev != NULL)
         tempo->prev->next = tempo->next;
