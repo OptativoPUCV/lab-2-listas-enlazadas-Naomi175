@@ -68,6 +68,17 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
+    nuevoNodo = createNode(data);
+    if (list->head == NULL) {
+        list->head = nuevoNodo;
+        list->tail = nuevoNodo;
+        list->current = nuevoNodo;
+    }
+    else {
+        nuevoNodo->next = list->head;
+        list->head->prev = nuevoNodo;
+        list->head = nuevoNodo;
+    }
 }
 
 void pushBack(List * list, void * data) {
@@ -76,6 +87,20 @@ void pushBack(List * list, void * data) {
 }
 
 void pushCurrent(List * list, void * data) {
+    if (list == NULL || list->current == NULL)
+        return;
+    
+    nuevoNodo = createNode(data);
+
+    nuevoNodo->next = list->current->next;
+    if (list->current->next != NULL)
+        list->current->next->prev = nuevoNodo;
+    
+    list->current->next = nuevoNodo;
+    nuevoNodo->prev = list->current;
+
+    if (list->current == list->tail)
+        list->tail = nuevoNodo;
 }
 
 void * popFront(List * list) {
@@ -89,7 +114,26 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-    return NULL;
+    if (list == NULL || list->current == NULL)
+        return NULL;
+    
+    tempo = list->current;
+    data = temp.data;
+
+    if (tempo->prev != NULL)
+        tempo->prev->next = tempo->next;
+    else
+        list->head = tempo->next;
+    
+    if (tempo->next != NULL)
+        tempo->next->prev = tempo->prev;
+    else
+        list->tail = tempo->prev;
+    
+    list->current = tempo->next;
+
+    free(tempo);
+    return data;
 }
 
 void cleanList(List * list) {
