@@ -276,3 +276,140 @@ test.c:81:1: error: control reaches end of non-void function [-Werror=return-typ
 cc1.exe: all warnings being treated as errors
 Compilation failed
 a97c96e
+vi., 28 de mar. de 2025 22:43:51: 
+ list.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:0:
+list.c:18:3: error: 'List' redeclared as different kind of symbol
+ } List;
+   ^~~~
+In file included from list.c:4:0,
+                 from test.c:5:
+list.h:4:21: note: previous declaration of 'List' was here
+ typedef struct List List;
+                     ^~~~
+In file included from test.c:5:0:
+list.c:21:14: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'List'
+ typedef List List;
+              ^~~~
+list.c:32:1: error: unknown type name 'List'
+ List * createList() {
+ ^~~~
+list.c:32:1: note: use 'struct' keyword to refer to the type
+list.c:32:8: error: conflicting types for 'createList'
+ List * createList() {
+        ^~~~~~~~~~
+In file included from list.c:4:0,
+                 from test.c:5:
+list.h:6:8: note: previous declaration of 'createList' was here
+ List * createList(void);
+        ^~~~~~~~~~
+In file included from test.c:5:0:
+list.c: In function 'createList':
+list.c:33:11: error: 'list' undeclared (first use in this function)
+     List* list = (List*) malloc(sizeof(List));
+           ^~~~
+list.c:33:11: note: each undeclared identifier is reported only once for each function it appears in
+list.c:33:24: error: expected expression before ')' token
+     List* list = (List*) malloc(sizeof(List));
+                        ^
+list.c: At top level:
+list.c:42:18: error: expected declaration specifiers or '...' before 'List'
+ void * firstList(List * list) {
+                  ^~~~
+list.c:49:17: error: expected declaration specifiers or '...' before 'List'
+ void * nextList(List * list) {
+                 ^~~~
+list.c:56:17: error: expected declaration specifiers or '...' before 'List'
+ void * lastList(List * list) {
+                 ^~~~
+list.c:63:17: error: expected declaration specifiers or '...' before 'List'
+ void * prevList(List * list) {
+                 ^~~~
+list.c:70:16: error: expected declaration specifiers or '...' before 'List'
+ void pushFront(List * list, void * data) {
+                ^~~~
+list.c:73:15: error: expected declaration specifiers or '...' before 'List'
+ void pushBack(List * list, void * data) {
+               ^~~~
+list.c:78:18: error: expected declaration specifiers or '...' before 'List'
+ void pushCurrent(List * list, void * data) {
+                  ^~~~
+list.c:81:17: error: expected declaration specifiers or '...' before 'List'
+ void * popFront(List * list) {
+                 ^~~~
+list.c:86:16: error: expected declaration specifiers or '...' before 'List'
+ void * popBack(List * list) {
+                ^~~~
+list.c:91:19: error: expected declaration specifiers or '...' before 'List'
+ void * popCurrent(List * list) {
+                   ^~~~
+list.c:95:16: error: expected declaration specifiers or '...' before 'List'
+ void cleanList(List * list) {
+                ^~~~
+test.c:51:1: error: unknown type name 'List'
+ List* initialize_exList(){
+ ^~~~
+test.c:51:1: note: use 'struct' keyword to refer to the type
+test.c: In function 'initialize_exList':
+test.c:53:13: error: 'L' undeclared (first use in this function)
+      List * L = (List *)malloc(sizeof(List));
+             ^
+test.c:53:24: error: expected expression before ')' token
+      List * L = (List *)malloc(sizeof(List));
+                        ^
+test.c: At top level:
+test.c:73:1: error: unknown type name 'List'
+ List* initialize_emptyList(){
+ ^~~~
+test.c:73:1: note: use 'struct' keyword to refer to the type
+test.c: In function 'initialize_emptyList':
+test.c:75:13: error: 'L' undeclared (first use in this function)
+      List * L = (List *)malloc(sizeof(List));
+             ^
+test.c:75:24: error: expected expression before ')' token
+      List * L = (List *)malloc(sizeof(List));
+                        ^
+test.c: In function 'test_create':
+test.c:84:11: error: 'L' undeclared (first use in this function)
+     List* L = createList();
+           ^
+test.c: In function 'test_first_next':
+test.c:99:11: error: 'L' undeclared (first use in this function)
+     List* L=initialize_exList();
+           ^
+test.c: In function 'test_last_prev':
+test.c:172:11: error: 'L' undeclared (first use in this function)
+     List* L=initialize_exList();
+           ^
+test.c: In function 'test_pushfront':
+test.c:235:12: error: 'L' undeclared (first use in this function)
+     List * L = (List *)calloc(1,sizeof(List));
+            ^
+test.c:235:23: error: expected expression before ')' token
+     List * L = (List *)calloc(1,sizeof(List));
+                       ^
+test.c: In function 'test_pushcurrent':
+test.c:299:11: error: 'L' undeclared (first use in this function)
+     List* L = initialize_exList();
+           ^
+test.c: In function 'test_popcurrent':
+test.c:358:11: error: 'L' undeclared (first use in this function)
+     List* L = initialize_exList();
+           ^
+In file included from test.c:5:0:
+list.c: In function 'createList':
+list.c:40:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+test.c: In function 'initialize_exList':
+test.c:71:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+test.c: In function 'initialize_emptyList':
+test.c:81:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+6f0d223
